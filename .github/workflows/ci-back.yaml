@@ -6,8 +6,8 @@ env:
   PHP_VERSION: "8.4"
    
 jobs:
-  lint:
-    name: Lint & Static Analysis
+  HarmoniaLintAndTest:
+    name: LintAndTest
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -25,10 +25,10 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-
-      - run: composer install 
-      - run: vendor/bin/php-cs-fixer fix --dry-run --diff
-      - run: vendor/bin/phpstan analyse --level=9 --no-progress
+      - name: Setup Linter
+        run: composer install --no-interaction --prefer-dist
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+        run: vendor/bin/phpstan analyse --level=9 --no-progress
 
       - name: Lint YAML files
         if: always() && steps.install.outcome == 'success'
