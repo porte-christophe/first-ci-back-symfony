@@ -20,10 +20,7 @@ jobs:
 
       
       - name: composer install
-        run: composer install --no-interaction --prefer-dist
-        
-      - name: clear cache
-        run: php bin/console cache:clear 
+        run: composer install --no-interaction
 
       - name: php-cs-fixer + phpstan
         run: vendor/bin/php-cs-fixer fix --dry-run --diff &&
