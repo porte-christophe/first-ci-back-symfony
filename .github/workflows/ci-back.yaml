@@ -26,9 +26,9 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Setup Linter
-        run: composer install --no-interaction --prefer-dist
-        run: vendor/bin/php-cs-fixer fix --dry-run --diff
-        run: vendor/bin/phpstan analyse --level=9 --no-progress
+        run: composer install --no-interaction --prefer-dist && 
+             vendor/bin/php-cs-fixer fix --dry-run --diff &&
+             vendor/bin/phpstan analyse --level=9 --no-progress
 
       - name: Lint YAML files
         if: always() && steps.install.outcome == 'success'
