@@ -26,7 +26,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Setup Linter
-        run: ./bin/console cache:clear &&
+        run: php bin/console cache:clear &&
              composer install --no-interaction --prefer-dist && 
              vendor/bin/php-cs-fixer fix --dry-run --diff &&
              vendor/bin/phpstan analyse --level=9 --no-progress
