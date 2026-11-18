@@ -25,12 +25,13 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: composer install
+        run: composer install --no-interaction --prefer-dist
       - name: clear cache
         run: php bin/console cache:clear 
 
-      - name: composer install + php-cs-fixer + phpstan
-        run: composer install --no-interaction --prefer-dist && 
-             vendor/bin/php-cs-fixer fix --dry-run --diff &&
+      - name: php-cs-fixer + phpstan
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff &&
              vendor/bin/phpstan analyse --level=9 --no-progress
 
       - name: Lint YAML files
