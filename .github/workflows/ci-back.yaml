@@ -37,6 +37,3 @@ jobs:
       - name: Lint Twig templates
         if: always() && steps.install.outcome == 'success'
         run: ./bin/console lint:twig templates 
-
-      - run: vendor/bin/phpcs -h
-      - run: vendor/bin/phpcbf -h
