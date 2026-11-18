@@ -1,0 +1,41 @@
+name: HarmoniaLintAndTest
+
+on: [push]
+
+env:
+  PHP_VERSION: "8.4"
+   
+jobs:
+  lint:
+    name: Lint & Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{env.PHP_VERSION}}
+          tools: composer:v2
+
+      - name: Cache Composer
+        uses: actions/cache@v6
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - run: composer install --no-interaction --prefer-dist
+      - run: vendor/bin/php-cs-fixer fix --dry-run --diff
+      - run: vendor/bin/phpstan analyse --level=9 --no-progress
+
+      - name: Lint YAML files
+        if: always() && steps.install.outcome == 'success'
+        run: ./bin/console lint:yaml config --parse-tags
+
+      - name: Lint Twig templates
+        if: always() && steps.install.outcome == 'success'
+        run: ./bin/console lint:twig templates 
+
+      - run: vendor/bin/phpcs -h
+      - run: vendor/bin/phpcbf -h

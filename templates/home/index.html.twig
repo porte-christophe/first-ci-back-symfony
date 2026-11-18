@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1 class="text-center">Les dernières sorties</h1>
+
+        {% include "components/album-loop.html.twig" with {
+            'title': 'EP',
+            'albums': eps
+        } %}
+
+        {% include "components/album-loop.html.twig" with {
+            'title': 'Singles',
+            'albums': singles
+        } %}
+
+        {% include "components/album-loop.html.twig" with {
+            'title': 'Albums',
+        } %}
+
+    </div>
+
+{% endblock %}
