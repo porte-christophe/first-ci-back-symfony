@@ -18,13 +18,7 @@ jobs:
           php-version: ${{env.PHP_VERSION}}
           tools: composer:v2
 
-      - name: Cache Composer
-        uses: actions/cache@v6
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
+      
       - name: composer install
         run: composer install --no-interaction --prefer-dist
         
