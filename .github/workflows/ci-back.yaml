@@ -25,6 +25,13 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       
+      - name: create .env
+        run: |
+          touch .env
+          echo KERNEL_CLASS=${{secrets.KERNEL_CLASS}} >> .env
+          echo APP_SECRET=${{secrets.APP_SECRET}} >> .env
+          echo DATABASE_URL=${{secrets.DATABASE_URL}} >> .env
+
       - name: composer install
         run: composer install
 
