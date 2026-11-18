@@ -25,9 +25,11 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Setup Linter
-        run: php bin/console cache:clear &&
-             composer install --no-interaction --prefer-dist && 
+      - name: clear cache
+        run: php bin/console cache:clear 
+
+      - name: composer install + php-cs-fixer + phpstan
+        run: composer install --no-interaction --prefer-dist && 
              vendor/bin/php-cs-fixer fix --dry-run --diff &&
              vendor/bin/phpstan analyse --level=9 --no-progress
 
