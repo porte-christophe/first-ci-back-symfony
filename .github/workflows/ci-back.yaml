@@ -46,6 +46,6 @@ jobs:
         run: vendor/bin/php-cs-fixer fix
 
       - name: phpstan
-        run: vendor/bin/phpstan analyse --level=9 --no-progress
+        run: vendor/bin/phpstan analyse 
 
        
