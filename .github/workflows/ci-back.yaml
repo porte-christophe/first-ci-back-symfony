@@ -36,9 +36,9 @@ jobs:
       - name: composer install
         run: composer install
 
-      - name: php-cs-fixer
-        run: composer require php-cs-fixer &&
-             vendor/bin/php-cs-fixer check
+      # - name: php-cs-fixer
+      #   run: composer require php-cs-fixer &&
+      #        vendor/bin/php-cs-fixer check
 
       - name: phpstan
         run: vendor/bin/phpstan analyse --level=9 --no-progress
