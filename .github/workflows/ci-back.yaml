@@ -37,10 +37,10 @@ jobs:
         run: composer install
 
       - name: Lint YAML files
-        run: bin/console lint:yaml config --parse-tags
+        run: php bin/console lint:yaml config --parse-tags
 
       - name: Lint Twig templates
-        run: bin/console lint:twig templates
+        run: php bin/console lint:twig templates
 
       - name: php-cs-fixer
         run: composer require php-cs-fixer &&
