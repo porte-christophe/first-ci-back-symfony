@@ -36,9 +36,12 @@ jobs:
       - name: composer install
         run: composer install
 
-      - name: php-cs-fixer + phpstan
-        run: vendor/bin/php-cs-fixer fix --dry-run --diff &&
-             vendor/bin/phpstan analyse --level=9 --no-progress
+      - name: php-cs-fixer
+        run: composer require --dev friendsofphp/php-cs-fixer &&
+             vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: phpstan
+        run: vendor/bin/phpstan analyse --level=9 --no-progress
 
       - name: Lint YAML files
         if: always() && steps.install.outcome == 'success'
