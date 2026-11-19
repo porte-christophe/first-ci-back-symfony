@@ -38,6 +38,7 @@ jobs:
 
       - name: php-cs-fixer
         run: composer require --dev friendsofphp/php-cs-fixer &&
+             vendor/bin/php-cs-fixer init &&
              vendor/bin/php-cs-fixer fix --dry-run --diff
 
       - name: phpstan
