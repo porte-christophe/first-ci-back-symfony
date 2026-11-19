@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Controller;
-///
+
+// /
 use App\Repository\AlbumRepository;
 use App\Repository\TrackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,18 +15,18 @@ final class AlbumController extends AbstractController
     public function item(int $id, AlbumRepository $albumRepository, TrackRepository $trackRepository): Response
     {
         $album = $albumRepository->find($id);
-        if ($album === null) {
+        if (null === $album) {
             return $this->redirectToRoute('app_home');
         }
         if (count($album->getTracks()) > 0) {
-            $duration = (int)$trackRepository->findTotalDuration($album);
+            $duration = (int) $trackRepository->findTotalDuration($album);
         } else {
             $duration = 0;
         }
 
         return $this->render('album/item.html.twig', [
             'album' => $album,
-            'duration' => $duration
+            'duration' => $duration,
         ]);
     }
 }

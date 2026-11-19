@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Album;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,9 +19,10 @@ class AlbumRepository extends ServiceEntityRepository
     public function findAlbumsLike(string $search): array
     {
         $search = str_replace(' ', '%', $search);
+
         return $this->createQueryBuilder('a')
             ->where('a.title LIKE :search')
-            ->setParameter('search', '%' . $search . '%')
+            ->setParameter('search', '%'.$search.'%')
             ->getQuery()
             ->getResult();
     }
@@ -43,7 +43,7 @@ class AlbumRepository extends ServiceEntityRepository
             // ORDER BY a.released_at DESC
             ->orderBy('a.releasedAt', 'DESC');
 
-        if ($limit !== null) {
+        if (null !== $limit) {
             // LIMIT $limit
             $qb->setMaxResults($limit)
                 ->groupBy('a');
@@ -52,5 +52,4 @@ class AlbumRepository extends ServiceEntityRepository
         return $qb->getQuery()
             ->getResult(); // $pdo->execute($statement);
     }
-
 }

@@ -9,16 +9,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AlbumControllerTest extends AbstractWebTestCase
 {
-
-    #[TestWith(['PIZZA3000','2026-10-16T13:54:55Z','39',"EP","oskour.jpg",302])]
+    #[TestWith(['PIZZA3000', '2026-10-16T13:54:55Z', '39', 'EP', 'oskour.jpg', 302])]
     public function testFormSubmit(
         string $title,
         string $date,
         string $artist,
         string $type,
         string $poster,
-        int $code
-    ):void {
+        int $code,
+    ): void {
         $client = static::createClient();
         $this->loginUser($client, 'admin@admin.fr');
         $crawler = $client->request('GET', self::URL_ADMIN_ALBUM_NEW);
@@ -30,7 +29,7 @@ class AlbumControllerTest extends AbstractWebTestCase
             1949
         );
 
-        $form = $crawler->selectButton("Ajouter")->form();
+        $form = $crawler->selectButton('Ajouter')->form();
         $form['album[title]'] = $title;
         $form['album[releasedAt]'] = $date;
         $form['album[artist]']->select($artist);
@@ -40,8 +39,8 @@ class AlbumControllerTest extends AbstractWebTestCase
 
         $this->assertResponseStatusCodeSame($code);
         $albumRepo = $this->getRepository(AlbumRepository::class);
-        $album = $albumRepo->findOneBy(['title'=>$title]);
-        if($code === 302) {
+        $album = $albumRepo->findOneBy(['title' => $title]);
+        if (302 === $code) {
             $this->removeEntity($album);
         }
     }

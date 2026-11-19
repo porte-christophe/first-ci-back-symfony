@@ -7,7 +7,6 @@ use PHPUnit\Framework\Attributes\TestWith;
 
 class FavoriteControllerTest extends AbstractWebTestCase
 {
-
     #[TestWith(['kelly.cassin@example.com', true], 'Test with ROLE_USER')]
     #[TestWith(['admin@admin.fr', true], 'Test with ROLE_ADMIN')]
     #[TestWith(['', false], 'Test without logged user')]
@@ -18,12 +17,11 @@ class FavoriteControllerTest extends AbstractWebTestCase
 
         $client->request('GET', self::URL_FAVORITE);
 
-        if ($expected === true) {
+        if (true === $expected) {
             $this->assertResponseIsSuccessful();
             $this->assertSelectorTextContains('h1', 'Mes favoris');
         } else {
             $this->assertResponseRedirects(self::URL_LOGIN);
         }
     }
-
 }

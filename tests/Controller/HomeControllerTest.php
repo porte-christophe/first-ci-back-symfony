@@ -6,7 +6,6 @@ use App\Tests\AbstractWebTestCase;
 
 class HomeControllerTest extends AbstractWebTestCase
 {
-
     public function testAccessOK(): void
     {
         $client = static::createClient();
@@ -15,5 +14,4 @@ class HomeControllerTest extends AbstractWebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Les dernières sorties');
     }
-
 }

@@ -36,9 +36,8 @@ class SecurityControllerTest extends AbstractWebTestCase
     public function testFormSubmit(
         string $email,
         string $password,
-        string $path
-    ): void
-    {
+        string $path,
+    ): void {
         $client = static::createClient();
         // $crawler => DOM / Page HTML
         $crawler = $client->request('GET', self::URL_LOGIN);
@@ -47,7 +46,7 @@ class SecurityControllerTest extends AbstractWebTestCase
         // si le button est bien enfant de la balise form /!\
         $form = $crawler->selectButton('Se connecter')->form();
         // Cas alternatif :
-//        $form = $crawler->filter('form[name="form[login]"]')->form();
+        //        $form = $crawler->filter('form[name="form[login]"]')->form();
         $form['email'] = $email;
         $form['password'] = $password;
         $client->submit($form);
@@ -65,7 +64,7 @@ class SecurityControllerTest extends AbstractWebTestCase
 
         $this->assertResponseRedirects($path);
 
-        if ($path === self::URL_LOGIN) {
+        if (self::URL_LOGIN === $path) {
             // Nécessaire en cas de redirection SI on veut tester l'état du DOM post-redirection
             $client->followRedirect();
             $this->assertSelectorTextContains('div.alert.alert-danger', 'Invalid credentials.');
@@ -80,5 +79,4 @@ class SecurityControllerTest extends AbstractWebTestCase
 
         $this->assertSelectorExists('a[href="/logout"]');
     }
-
 }

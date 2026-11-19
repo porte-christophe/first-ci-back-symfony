@@ -1,12 +1,10 @@
 <?php
 
-
 use App\Tests\AbstractWebTestCase;
 use PHPUnit\Framework\Attributes\TestWith;
 
 class NavBarTest extends AbstractWebTestCase
 {
-
     #[TestWith(['EP'])]
     #[TestWith(['Singles'])]
     #[TestWith(['Albums'])]
@@ -28,8 +26,6 @@ class NavBarTest extends AbstractWebTestCase
         $this->assertTrue($found);
     }
 
-
-
     // créer isTestOk = true;
     // créer variable temporaire ; $tmpElement = $genres[0]
     // boucler sur les éléments (Genre) as element
@@ -40,5 +36,4 @@ class NavBarTest extends AbstractWebTestCase
     // erreur : isTestOk = false
     // finsi
     // finboucle
-
 }
