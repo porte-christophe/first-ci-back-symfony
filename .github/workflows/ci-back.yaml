@@ -37,7 +37,7 @@ jobs:
         run: composer install
 
       - name: php-cs-fixer
-        run: composer install php-cs-fixer &&
+        run: composer require php-cs-fixer &&
              vendor/bin/php-cs-fixer check
 
       - name: phpstan
