@@ -5,6 +5,7 @@ on: [push]
 env:
   PHP_VERSION: "8.4"
   KERNEL_CLASS: ${{secrets.KERNEL_CLASS}}
+  #2
    
 jobs:
   HarmoniaLintAndTest:
