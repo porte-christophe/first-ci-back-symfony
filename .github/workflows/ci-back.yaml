@@ -4,8 +4,7 @@ on: [push]
 
 env:
   PHP_VERSION: "8.4"
-  KERNEL_CLASS: ${{secrets.KERNEL_CLASS}}
-  #2
+  KERNEL_CLASS: 'App\Kernel'
    
 jobs:
   HarmoniaLintAndTest:
@@ -53,4 +52,5 @@ jobs:
         run: php bin/phpunit --version
 
       - name: test home titre
-        run: php bin/phpunit tests/Controller/HomeControllerTest.php
+        run: echo ${{secrets.KERNEL_CLASS}} && 
+        php bin/phpunit tests/Controller/HomeControllerTest.php
