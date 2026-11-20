@@ -33,6 +33,15 @@ jobs:
           echo DATABASE_URL=${{secrets.DATABASE_URL}} >> .env
           echo DEFAULT_URI=${{secrets.DEFAULT_URI}} >> .env
 
+      - name: create .env.test
+        run: |
+          touch .env.test
+          echo KERNEL_CLASS=${{secrets.KERNEL_CLASS}} >> .env.test
+          echo APP_SECRET=${{secrets.APP_SECRET}} >> .env.test
+          echo DATABASE_URL=${{secrets.DATABASE_URL}} >> .env.test
+          echo DEFAULT_URI=${{secrets.DEFAULT_URI}} >> .env.test
+
+
       - name: composer install
         run: composer install
 
@@ -50,5 +59,8 @@ jobs:
 
       - name: test home titre
         run: php bin/phpunit tests/Controller/HomeControllerTest.php
+
+      - name: Lancer les test
+        run: vendor/bin/phpunit
 
        
