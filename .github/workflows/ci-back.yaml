@@ -60,4 +60,4 @@ jobs:
         run: php bin/phpunit --version
 
       - name: test home titre
-        run: php bin/phpunit tests/Controller/HomeControllerTest.php
+        run: php bin/phpunit
