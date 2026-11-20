@@ -49,6 +49,6 @@ jobs:
         run: vendor/bin/phpstan analyse 
 
       - name: test home titre
-        run: php bin/phpunit Controller\HomeControllerTest.php
+        run: php bin/phpunit Controller/HomeControllerTest.php
 
        
