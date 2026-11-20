@@ -40,6 +40,9 @@ jobs:
 
       - name: composer install
         run: composer install
+      
+      - name: MAJ des dépendances
+        run: composer update
 
       - name: Lint YAML files
         run: php bin/console lint:yaml config
