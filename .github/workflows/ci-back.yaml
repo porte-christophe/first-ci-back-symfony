@@ -37,7 +37,7 @@ jobs:
         run: |
           touch .env.test
           echo KERNEL_CLASS=${{secrets.KERNEL_CLASS}} >> .env.test
-          
+
       - name: composer install
         run: composer install
 
@@ -52,6 +52,9 @@ jobs:
 
       - name: phpstan
         run: vendor/bin/phpstan analyse 
+        
+      - name: verifier la version du phpUnit
+        run: php bin/phpunit --version
 
       - name: test home titre
         run: php bin/phpunit tests/Controller/HomeControllerTest.php
