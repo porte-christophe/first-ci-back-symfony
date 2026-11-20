@@ -4,6 +4,7 @@ on: [push]
 
 env:
   PHP_VERSION: "8.4"
+  KERNEL_CLASS: ${{secrets.KERNEL_CLASS}}
    
 jobs:
   HarmoniaLintAndTest:
@@ -28,15 +29,9 @@ jobs:
       - name: create .env
         run: |
           touch .env
-          echo KERNEL_CLASS=${{secrets.KERNEL_CLASS}} >> .env
           echo APP_SECRET=${{secrets.APP_SECRET}} >> .env
           echo DATABASE_URL=${{secrets.DATABASE_URL}} >> .env
           echo DEFAULT_URI=${{secrets.DEFAULT_URI}} >> .env
-
-      - name: create .env.test
-        run: |
-          touch .env.test
-          echo KERNEL_CLASS=${{secrets.KERNEL_CLASS}} >> .env.test
 
       - name: composer install
         run: composer install
