@@ -48,4 +48,6 @@ jobs:
       - name: phpstan
         run: vendor/bin/phpstan analyse 
 
+      - name: lancer le test
+        run: php bin/phpunit
        

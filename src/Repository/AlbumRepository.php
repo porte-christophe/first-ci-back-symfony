@@ -16,13 +16,11 @@ class AlbumRepository extends ServiceEntityRepository
         parent::__construct($registry, Album::class);
     }
 
-    public function findAlbumsLike(string $search): array
+    public function findLike(string $searchVal): array
     {
-        $search = str_replace(' ', '%', $search);
-
-        return $this->createQueryBuilder('a')
-            ->where('a.title LIKE :search')
-            ->setParameter('search', '%'.$search.'%')
+        return $this->createQueryBuilder('album')
+            ->where('album.title LIKE :title')
+            ->setParameter('title', '%' . $searchVal . '%')
             ->getQuery()
             ->getResult();
     }

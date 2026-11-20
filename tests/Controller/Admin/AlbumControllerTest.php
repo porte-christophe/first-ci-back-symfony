@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AlbumControllerTest extends AbstractWebTestCase
 {
-    #[TestWith(['PIZZA3000', '2026-10-16T13:54:55Z', '39', 'EP', 'oskour.jpg', 302])]
+    #[TestWith(['PIZZA3000', '2026-10-16T13:54:55Z', '1', 'EP', 'oskour.jpg', 302])]
     public function testFormSubmit(
         string $title,
         string $date,
