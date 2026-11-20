@@ -56,8 +56,8 @@ jobs:
 
       - name: phpstan
         run: vendor/bin/phpstan analyse 
-        
-      - name: Lancer les test
-        run: vendor/bin/phpunit
+
+      - name: test home titre
+        run: php bin/php/phpunit tests/Controller/HomeControllerTest.php
 
        
