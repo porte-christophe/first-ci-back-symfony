@@ -52,7 +52,7 @@ jobs:
 
       - name: phpstan
         run: vendor/bin/phpstan analyse 
-        
+
       - name: verifier la version du phpUnit
         run: php bin/phpunit --version
 
