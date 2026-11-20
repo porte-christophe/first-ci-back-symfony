@@ -5,6 +5,7 @@ on: [push]
 env:
   PHP_VERSION: "8.4"
   KERNEL_CLASS: ${{secrets.KERNEL_CLASS}}
+  DATABASE_URL: ${{secrets.DATABASE_URL}}
    
 jobs:
   HarmoniaLintAndTest:
@@ -30,7 +31,6 @@ jobs:
         run: |
           touch .env
           echo APP_SECRET=${{secrets.APP_SECRET}} >> .env
-          echo DATABASE_URL=${{secrets.DATABASE_URL}} >> .env
           echo DEFAULT_URI=${{secrets.DEFAULT_URI}} >> .env
 
       - name: composer install
