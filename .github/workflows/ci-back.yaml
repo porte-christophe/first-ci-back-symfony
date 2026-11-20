@@ -48,6 +48,7 @@ jobs:
       - name: phpstan
         run: vendor/bin/phpstan analyse 
 
-      - name: test bdd
-        run: SHOW DATABASES;
+      - name: test home titre
+        run: php bin/phpunit
+
        
